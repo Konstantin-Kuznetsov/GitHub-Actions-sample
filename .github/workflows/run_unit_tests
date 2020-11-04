@@ -1,7 +1,6 @@
 name: PR_unit_tests
 on:
   pull_request:
-    pull_request:
       branches: [ main ]
 
   Run_unit-tests:
