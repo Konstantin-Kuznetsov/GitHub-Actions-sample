@@ -2,8 +2,7 @@ name: PR_unit_tests
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   run_unit-tests:
