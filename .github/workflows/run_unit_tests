@@ -1,8 +1,7 @@
 name: PR_unit_tests
 on:
   pull_request:
-    branches:
-      - main
+      branches: [ main ]
 
   Run_unit-tests:
     runs-on: ubuntu-20.04
