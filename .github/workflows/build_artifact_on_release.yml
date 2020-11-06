@@ -21,8 +21,10 @@ jobs:
           ./gradlew bundleRelease
       - name: Rename artifacts with current version name
         run: |
-          mv app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/my_app_release_unsigned_${{ github.head_ref }}
-          mv app/build/outputs/bundle/release/app-release.aab app/build/outputs/apk/release/my_app_release_${{ github.head_ref }}
+          cd app/build/outputs/apk/release/
+          mv app-release-unsigned.apk my_app_release_unsigned_${{ github.head_ref }}.apk
+          cd app/build/outputs/bundle/release/
+          mv app-release.aab my_app_release_${{ github.head_ref }}.aab
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
