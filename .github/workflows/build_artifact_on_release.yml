@@ -19,6 +19,10 @@ jobs:
           ./gradlew test
           ./gradlew assembleRelease
           ./gradlew bundleRelease
+      - mame: Rename artifacts with current version name
+        - run: |
+          mv app/build/outputs/apk/release/app-release-unsigned.apk my_app_release_unsigned_v${{ github.head_ref }}
+          mv app/build/outputs/bundle/release/app-release.aab my_app_release_v${{ github.head_ref }}
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
