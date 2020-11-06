@@ -19,7 +19,7 @@ jobs:
           ./gradlew test
           ./gradlew assembleRelease
           ./gradlew bundleRelease
-      - mame: Rename artifacts with current version name
+      - name: Rename artifacts with current version name
         - run: |
           mv app/build/outputs/apk/release/app-release-unsigned.apk my_app_release_unsigned_${{ github.head_ref }}
           mv app/build/outputs/bundle/release/app-release.aab my_app_release_${{ github.head_ref }}
