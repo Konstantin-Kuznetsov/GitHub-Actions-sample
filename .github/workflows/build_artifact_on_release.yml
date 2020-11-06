@@ -1,4 +1,4 @@
-name: Teas_and_build_artifacts_on_release
+name: Test_and_build_artifacts_on_release
 
 on:
   pull_request:
