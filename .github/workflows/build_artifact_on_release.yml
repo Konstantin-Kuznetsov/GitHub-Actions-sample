@@ -16,15 +16,18 @@ jobs:
       with: {java-version: 1.8}
       - name: Build release APK and AAB after test
         run: |
+          echo "Build artifacts for ${{github.head_ref}}"
           ./gradlew test
           ./gradlew assembleRelease
           ./gradlew bundleRelease
       - name: Upload APK
+          run: echo "Upload APK for ${{github.head_ref}}"
           uses: actions/upload-artifact@v2
           with:
             name: app-release.apk
             path: app/build/outputs/apk/release/app-release.apk
       - name: Upload AAB Bundle
+          run: echo "Upload AAB for ${{github.head_ref}}"
           uses: actions/upload-artifact@v2
           with:
             name: app-release.aab
