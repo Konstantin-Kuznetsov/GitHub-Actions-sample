@@ -23,9 +23,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: app-release.apk
-          path: app/build/outputs/apk/release/my_app_release_unsigned_${{ github.head_ref }}.apk
+          path: app/build/outputs/apk/release/app-release-unsigned.apk
       - name: Upload AAB Bundle
         uses: actions/upload-artifact@v2
         with:
           name: app-release.aab
-          path: app/build/outputs/bundle/release/my_app_release_${{ github.head_ref }}.aab
+          path: app/build/outputs/bundle/release/app-release.aab
