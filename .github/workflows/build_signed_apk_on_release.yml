@@ -1,4 +1,4 @@
-name: Test_and_build_artifacts_on_release
+name: Test_and_build_signed_artifacts_on_release
 
 on:
   pull_request:
@@ -30,9 +30,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: app-release.apk
-          path: app/build/outputs/apk/release/app-release-unsigned.apk
-      - name: Upload AAB Bundle
-        uses: actions/upload-artifact@v2
-        with:
-          name: app-release.aab
-          path: app/build/outputs/bundle/release/app-release.aab
+          path: app/build/outputs/apk/release/app-release.apk
