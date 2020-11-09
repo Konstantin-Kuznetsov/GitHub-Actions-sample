@@ -26,6 +26,9 @@ jobs:
           git submodule add git@github.com:${{ secrets.KEYSTORE_GIT_REPOSITORY }}.git keystore
           ./gradlew test
           ./gradlew assembleRelease
+
+        with:
+          token: ${{ secrets.GH_TOKEN }}
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
