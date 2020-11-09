@@ -17,8 +17,25 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // Сначала поиск локального keystore_config, если не нашли - проверяем системные переменные.
+    signingConfigs {
+        releaseSigningConfig {
+            def keystoreProperties = new Properties()
+            def keystorePropsFile = file("keystore/keystore_config")
+            if (keystorePropsFile.exists()) {
+                keystoreProperties.load(new FileInputStream(keystorePropsFile))
+            } else {
+                keystoreProperties['storeFile'] = System.getenv('KEYSTORE_FILE')
+                keystoreProperties['storePassword'] = System.getenv('KEYSTORE_PASSWORD')
+                keystoreProperties['keyAlias'] = System.getenv('RELEASE_SIGN_KEY_ALIAS')
+                keystoreProperties['keyPassword'] = System.getenv('RELEASE_SIGN_KEY_PASSWORD')
+            }
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.releaseSigningConfig
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
