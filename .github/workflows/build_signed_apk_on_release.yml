@@ -18,17 +18,29 @@ jobs:
     name: Build release artifacts
     runs-on: ubuntu-20.04
     steps:
+      - name: Build release APK and AAB after test
       - uses: actions/checkout@v2
+        with:
+          path: main
       - uses: actions/setup-java@v1
         with: {java-version: 1.8}
-      - name: Build release APK and AAB after test
+
+
+      - name: Checkout private repo
+        uses: actions/checkout@v2
+        with:
+        repository: Konstantin-Kuznetsov/sample-keystore
+        token: ${{ secrets.GH_TOKEN }} # `GitHub_PAT` is a secret that contains your PAT
+        path: keystore
+
+
+      - name: Run Gradle assemble tasks
+      - uses: actions/setup-java@v1
+        with: {java-version: 1.8}
         run: |
-          git submodule add git@github.com:${{ secrets.KEYSTORE_GIT_REPOSITORY }}.git keystore
           ./gradlew test
           ./gradlew assembleRelease
 
-        with:
-          token: ${{ secrets.GH_TOKEN }}
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
