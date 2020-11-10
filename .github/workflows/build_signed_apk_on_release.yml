@@ -32,10 +32,7 @@ jobs:
       - name: Build release APK and AAB after test
         run: |
           mkdir keystore
-          cd ..
-          cd ..
-          cd ..
-
+          mv keystore/sample-keystore/my_keystore.jks keystore
           ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
           ./gradlew test
           ./gradlew assembleRelease
