@@ -32,7 +32,9 @@ jobs:
       - name: Build release APK and AAB after test
         run: |
           mkdir keystore
-          mv ../keystore/sample-keystore/my_keystore.jks keystore
+          cd ..
+          cd ..
+          ls
           ./gradlew test
           ./gradlew assembleRelease
           ./gradlew bundleRelease
