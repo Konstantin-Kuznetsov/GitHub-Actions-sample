@@ -7,4 +7,3 @@ Feature branch Unit tests status
 Main branch status
 
 ![main](https://github.com/Konstantin-Kuznetsov/Konstantin-Kuznetsov-GitHub-Actions-sample/workflows/Hello_world/badge.svg)
-
