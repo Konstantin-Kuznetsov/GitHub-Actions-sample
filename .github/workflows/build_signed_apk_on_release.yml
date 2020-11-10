@@ -31,8 +31,8 @@ jobs:
         with: {java-version: 1.8}
       - name: Build release APK and AAB after test
         run: |
-            cd..
-            cd..
+            cd ..
+            cd ..
             ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
             ./gradlew test
             ./gradlew assembleRelease
