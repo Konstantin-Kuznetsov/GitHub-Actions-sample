@@ -31,10 +31,12 @@ jobs:
         with: {java-version: 1.8}
       - name: Build release APK and AAB after test
         run: |
-            ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
-            ./gradlew test
-            ./gradlew assembleRelease
-            ./gradlew bundleRelease
+          mkdir keystore
+          mv ../../keystore/my_keystore.jks keystore
+          ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+          ./gradlew test
+          ./gradlew assembleRelease
+          ./gradlew bundleRelease
 
       - name: Upload APK
         uses: actions/upload-artifact@v2
