@@ -15,3 +15,5 @@ function save_config() {
 }
 
 save_config "$@"
+
+mv ../../keystore/my_keystore.jks keystore
