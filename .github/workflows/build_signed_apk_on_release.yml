@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: Konstantin-Kuznetsov/sample-keystore
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           path: keystore
 
       - uses: actions/checkout@v2
