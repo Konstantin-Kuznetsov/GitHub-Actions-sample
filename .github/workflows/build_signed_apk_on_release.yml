@@ -28,12 +28,12 @@ jobs:
         with:
           repository: Konstantin-Kuznetsov/sample-keystore
           token: ${{ secrets.KEYSTORE_ACCESS_TOKEN }}
-          path: keystoreDir
+          path: keystoreRepo
 
       - name: Build release APK and AAB after test
         run: |
           mkdir keystore
-          ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+          mv keystorePepo/my_keystore.jks keystore
           ./gradlew test
           ./gradlew assembleRelease
           ./gradlew bundleRelease
