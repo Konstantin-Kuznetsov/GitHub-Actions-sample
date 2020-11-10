@@ -27,11 +27,11 @@ jobs:
 
 
       - name: Checkout private repo
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
-        repository: Konstantin-Kuznetsov/sample-keystore
-        token: ${{ secrets.GH_TOKEN }} # `GitHub_PAT` is a secret that contains your PAT
-        path: keystore
+          repository: Konstantin-Kuznetsov/sample-keystore
+          token: ${{ secrets.GH_TOKEN }} # `GitHub_PAT` is a secret that contains your PAT
+          path: keystore
 
 
       - name: Run Gradle assemble tasks
