@@ -25,8 +25,8 @@ android {
 
             if (keystorePropsFile.exists()) {
                 file("keystore/keystore_config").withInputStream { keyStoreProperties.load(it) }
-                storeFile file("$keyStoreProperties.keystoreFile")
-                storePassword "$keyStoreProperties.keystorePassword"
+                storeFile file("$keyStoreProperties.storeFile")
+                storePassword "$keyStoreProperties.storePassword"
                 keyAlias "$keyStoreProperties.keyAlias"
                 keyPassword "$keyStoreProperties.keyPassword"
             } else {

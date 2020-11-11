@@ -30,8 +30,6 @@ jobs:
 
       - name: Run tests and build release artifacts
         run: |
-          cd ..
-          ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
           ./gradlew test
           ./gradlew assembleRelease --stacktrace
           ./gradlew bundleRelease
