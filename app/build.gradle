@@ -25,12 +25,12 @@ android {
 
             if (keystorePropsFile.exists()) {
                 file("keystore/keystore_config").withInputStream { keyStoreProperties.load(it) }
-                storeFile file("$keyStoreProperties.storeFile")
-                storePassword "$keyStoreProperties.storePassword"
+                storeFile file("$keyStoreProperties.keystoreFile")
+                storePassword "$keyStoreProperties.keystorePassword"
                 keyAlias "$keyStoreProperties.keyAlias"
                 keyPassword "$keyStoreProperties.keyPassword"
             } else {
-                storeFile file(System.getenv('KEYSTORE_FILE'))
+                storeFile file("keystore/my_app_keystore")
                 storePassword System.getenv('KEYSTORE_PASSWORD')
                 keyAlias System.getenv('RELEASE_SIGN_KEY_ALIAS')
                 keyPassword System.getenv('RELEASE_SIGN_KEY_PASSWORD')
