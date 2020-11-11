@@ -21,7 +21,7 @@ android {
     signingConfigs {
         releaseSigningConfig {
             def keystoreProperties = new Properties()
-            def keystorePropsFile = file("keystore/keystore_config")
+            def keystorePropsFile = rootProject.file("keystore/keystore_config")
             if (keystorePropsFile.exists()) {
                 keystoreProperties.load(new FileInputStream(keystorePropsFile))
             } else {
@@ -40,6 +40,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
