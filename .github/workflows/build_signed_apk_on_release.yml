@@ -32,8 +32,6 @@ jobs:
 
       - name: Run tests and build release artifacts
         run: |
-          cd keystore
-          ls
           ./gradlew test
           ./gradlew assembleRelease --stacktrace
           ./gradlew bundleRelease
