@@ -33,7 +33,7 @@ jobs:
       - name: Build release APK and AAB after test
         run: |
           mkdir keystore
-          find . -type d -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
+          tree -l
           mv keystoreRepo/sample-keystore/my_keystore.jks keystore
           ./gradlew test
           ./gradlew assembleRelease
