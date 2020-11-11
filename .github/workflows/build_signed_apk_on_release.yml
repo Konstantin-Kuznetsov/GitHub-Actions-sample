@@ -30,21 +30,18 @@ jobs:
           token: ${{ secrets.KEYSTORE_ACCESS_TOKEN }}
           path: keystoreRepo
 
-      - name: Build release APK and AAB after test
+      - name: Prepare keystore for signing
         run: |
           mkdir keystore
-          echo "keystoreRepo files"
-          cd keystoreRepo
-          ls
-          echo "keystoreRepo/sample-keystore files"
-          cd sample-keystore
-          ls
-          mv keystoreRepo/sample-keystore/my_keystore.jks keystore
+          mv keystoreRepo/my_keystore.jks keystore
+
+      - name: Run tests and build release artifacts
+        run: |
           ./gradlew test
           ./gradlew assembleRelease
           ./gradlew bundleRelease
 
-      - name: Upload APK
+      - name: Upload signed APK
         uses: actions/upload-artifact@v2
         with:
           name: app-release.apk
