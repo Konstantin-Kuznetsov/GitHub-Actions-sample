@@ -28,17 +28,12 @@ jobs:
         with:
           repository: Konstantin-Kuznetsov/sample-keystore
           token: ${{ secrets.KEYSTORE_ACCESS_TOKEN }}
-          path: keystoreRepo
-
-      - name: Prepare keystore for signing
-        run: |
-          mkdir keystore
-          mv keystoreRepo/my_keystore.jks keystore
+          path: keystore
 
       - name: Run tests and build release artifacts
         run: |
           ./gradlew test
-          ./gradlew assembleRelease
+          ./gradlew assembleRelease --stacktrace
           ./gradlew bundleRelease
 
       - name: Upload signed APK
