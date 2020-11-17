@@ -19,27 +19,33 @@ android {
 
     // Сначала поиск локального keystore_config, если не нашли - проверяем системные переменные.
     signingConfigs {
-        releaseSigningConfig {
+        release {
             def keystoreProperties = new Properties()
             def keystorePropsFile = file("keystore/keystore_config")
+
             if (keystorePropsFile.exists()) {
-                keystoreProperties.load(new FileInputStream(keystorePropsFile))
+                file("keystore/keystore_config").withInputStream { keystoreProperties.load(it) }
+                storeFile file("$keystoreProperties.storeFile")
+                storePassword "$keystoreProperties.storePassword"
+                keyAlias "$keystoreProperties.keyAlias"
+                keyPassword "$keystoreProperties.keyPassword"
             } else {
-                keystoreProperties['storeFile'] = System.getenv('KEYSTORE_FILE')
-                keystoreProperties['storePassword'] = System.getenv('KEYSTORE_PASSWORD')
-                keystoreProperties['keyAlias'] = System.getenv('RELEASE_SIGN_KEY_ALIAS')
-                keystoreProperties['keyPassword'] = System.getenv('RELEASE_SIGN_KEY_PASSWORD')
+                storeFile file("keystore/my_app_keystore")
+                storePassword System.getenv('KEYSTORE_PASSWORD')
+                keyAlias System.getenv('RELEASE_SIGN_KEY_ALIAS')
+                keyPassword System.getenv('RELEASE_SIGN_KEY_PASSWORD')
             }
         }
     }
 
     buildTypes {
         release {
-            signingConfig signingConfigs.releaseSigningConfig
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
