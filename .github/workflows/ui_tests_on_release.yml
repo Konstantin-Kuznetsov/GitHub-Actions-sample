@@ -49,7 +49,7 @@ jobs:
           name: app-debug-androidTest
 
       - name: Firebase auth with gcloud
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@master
         with:
           version: '290.0.1'
           service_account_key: ${{ secrets.FIREBASE_KEY }}
